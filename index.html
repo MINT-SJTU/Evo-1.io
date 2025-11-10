@@ -24,7 +24,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-  <title>Evo-0: Vision-Language-Action Model with Implicit Spatial Understanding</title>
+  <title>Evo-1: Lightweight Vision-Language-Action Model with Preserved Semantic Alignment</title>
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
   rel="stylesheet">
@@ -52,16 +52,22 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">Evo-0: Vision-Language-Action Model with Implicit Spatial Understanding</h1>
+            <h1 class="title is-1 publication-title">Evo-1: Lightweight Vision-Language-Action Model with Preserved Semantic Alignment</h1>
         <div class="is-size-5 publication-authors">
-          <span class="author-block"><a href="#" target="_blank"><b>Tao Lin</b></a><sup>*</sup>,</span>
-          <span class="author-block"><a href="#" target="_blank"><b>Gen Li</b></a><sup>*</sup>,</span>
-          <span class="author-block"><a href="#" target="_blank"><b>Yilei Zhong</b></a>,</span>
-          <span class="author-block"><a href="#" target="_blank"><b>Yanwen Zou</b></a>,</span>
-          <span class="author-block"><a href="#" target="_blank"><b>Yuxin Du</b></a>,</span>
-          <span class="author-block"><a href="#" target="_blank"><b>Jiting Liu</b></a>,</span>
-          <span class="author-block"><a href="#" target="_blank"><b>Encheng Gu</b></a><sup>4</sup>,</span>
-          <span class="author-block"><a href="#" target="_blank"><b>Bo Zhao</b></a><sup>†</sup></span>
+          <span class="author-block"><a href="#" target="_blank"><b>Tao Lin</b></a><sup>1,2,3</sup>,</span>
+          <span class="author-block"><a href="#" target="_blank"><b>Yilei Zhong</b></a><sup>1</sup>,</span>
+          <span class="author-block"><a href="#" target="_blank"><b>Yuxin Du</b></a><sup>1,2,3</sup>,</span>
+          <span class="author-block"><a href="#" target="_blank"><b>Jingjing Zhang</b></a><sup>1</sup>,</span>
+          <span class="author-block"><a href="#" target="_blank"><b>Jiting Liu</b></a><sup>1</sup>,</span>
+          <span class="author-block"><a href="#" target="_blank"><b>Yinxinyu Chen</b></a><sup>5</sup>,</span>
+          <span class="author-block"><a href="#" target="_blank"><b>Encheng Gu</b></a><sup>6</sup>,</span>
+          <span class="author-block"><a href="#" target="_blank"><b>Ziyan Liu</b></a><sup>1</sup>,</span>
+          <span class="author-block"><a href="#" target="_blank"><b>Hongyi Cai</b></a><sup>1</sup>,</span>
+          <span class="author-block"><a href="#" target="_blank"><b>Yanwen Zou</b></a><sup>1,3,4</sup>,</span>
+          <span class="author-block"><a href="#" target="_blank"><b>Lixing Zou</b></a><sup>1</sup>,</span>
+          <span class="author-block"><a href="#" target="_blank"><b>Zhaoye Zhou</b></a><sup>1</sup>,</span>
+          <span class="author-block"><a href="#" target="_blank"><b>Gen Li</b></a><sup>1,3,7†</sup>,</span>
+          <span class="author-block"><a href="#" target="_blank"><b>Bo Zhao</b></a><sup>1,2,3†</sup></span>
         </div>
 
 
@@ -70,11 +76,14 @@
                     <sup>1</sup>School of AI, Shanghai Jiao Tong University, 
                     <sup>2</sup>EvoMind Tech, 
                     <sup>3</sup>IAAR-Shanghai,
-                    <sup>4</sup>University of Cambridge
+                    <sup>4</sup>SII
+                    <sup>5</sup>Carnegie Mellon University, 
+                    <sup>6</sup>University of Cambridge,
+                    <sup>7</sup>Nanyang Technological University                   
                     <br>
                   </span>
                   <span class="eql-cntrb">
-                    <small><br><sup>*</sup>Equal Contribution, <sup>†</sup>Corresponding Author</small>
+                    <small><br><sup>†</sup>Corresponding Author</small>
                   </span>
                 </div>
 
@@ -83,7 +92,7 @@
                     <div class="publication-links">
                          <!-- Arxiv PDF link -->
                       <span class="link-block">
-                        <a href="https://www.arxiv.org/pdf/2507.00416" target="_blank"
+                        <a href="static/pdfs/2511.04555v1.pdf" target="_blank"
                         class="external-link button is-normal is-rounded is-dark">
                         <span class="icon">
                           <i class="fas fa-file-pdf"></i>
@@ -94,7 +103,7 @@
 
                   <!-- Github link -->
                   <span class="link-block">
-                    <a href="https://github.com/MINT-SJTU/Evo-VLA" target="_blank"
+                    <a href="https://github.com/MINT-SJTU/Evo-1" target="_blank"
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fab fa-github"></i>
@@ -105,7 +114,7 @@
 
                 <!-- ArXiv abstract Link -->
                 <span class="link-block">
-                  <a href="https://www.arxiv.org/abs/2507.00416" target="_blank"
+                  <a href="https://www.arxiv.org/abs/2511.04555" target="_blank"
                   class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                     <i class="ai ai-arxiv"></i>
@@ -129,11 +138,24 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-Vision-Language-Action (VLA) models have emerged as a promising framework for enabling generalist robots capable of perceiving, reasoning, and acting in the real world. These models usually build upon pretrained Vision-Language Models (VLMs), which excel at semantic understanding due to large-scale image and text pretraining. However, existing VLMs typically lack precise spatial understanding capabilities, as they are primarily tuned on 2D image-text pairs without 3D supervision. 
-To address this limitation, recent approaches have incorporated explicit 3D inputs such as point clouds or depth maps, but this necessitates additional depth sensors or pre-trained depth estimation models, which may yield defective results.
-In contrast, our work introduces a plug-and-play module that implicitly incorporates 3D geometry features into VLA models by leveraging an off-the-shelf visual geometry foundation model.
-This integration provides the model with depth-aware visual representations, improving its ability to understand the geometric structure of the scene and the spatial relationships among objects from RGB images alone. 
-We evaluate our method on a set of spatially challenging tasks in both simulation and the real world. Extensive evaluations show that our method significantly improves the performance of state-of-the-art VLA models across diverse scenarios.
+Vision-Language-Action (VLA) models have emerged as a
+powerful framework that unifies perception, language, and
+control, enabling robots to perform diverse tasks through
+multimodal understanding. However, current VLA models
+typically contain massive parameters and rely heavily on
+large-scale robot data pretraining, leading to high computational costs during training, as well as limited deployability for real-time inference. Moreover, most training
+paradigms often degrade the perceptual representations of
+the vision-language backbone, resulting in overfitting and
+poor generalization to downstream tasks. In this work, we
+present Evo-1, a lightweight VLA model that reduces computation and improves deployment efficiency, while maintaining strong performance without pretraining on robot
+data. Evo-1 builds on a native multimodal Vision-Language
+model (VLM), incorporating a novel cross-modulated diffusion transformer along with an optimized integration module, together forming an effective architecture. We further
+introduce a two-stage training paradigm that progressively
+aligns action with perception, preserving the representations of the VLM. Notably, with only 0.77 billion parameters, Evo-1 achieves state-of-the-art results on the MetaWorld and RoboTwin suite, surpassing the previous best
+models by 12.4% and 6.9%, respectively, and also attains a
+competitive result of 94.8% on LIBERO. In real-world evaluations, Evo-1 attains a 78% success rate with high inference frequency and low memory overhead, outperforming
+all baseline methods. We release code, data, and model
+weights to facilitate future research on lightweight and efficient VLA models.
           </p>
         </div>
       </div>
@@ -145,8 +167,8 @@ We evaluate our method on a set of spatially challenging tasks in both simulatio
 <!-- Single fixed image display -->
 <section class="section" style="padding-bottom: 1rem;">
   <div class="container is-max-desktop has-text-centered">
-    <h2 class="title is-3">Architecture of Evo-0</h2>
-    <img src="static/images/Evo0_model.png" alt="Result Image" style="max-width: 100%; height: auto;">
+    <h2 class="title is-3">Architecture of Evo-1</h2>
+    <img src="static/images/Evo1_model.png" alt="Result Image" style="max-width: 100%; height: auto;">
   </div>
 </section>
 
@@ -154,7 +176,7 @@ We evaluate our method on a set of spatially challenging tasks in both simulatio
 <section class="section" style="padding-bottom: 1rem;">
   <div class="container is-max-desktop has-text-centered">
     <h2 class="title is-3">Simulation Experiments</h2>
-    <img src="static/images/rlbench.png" alt="Result Image" style="max-width: 100%; height: auto;">
+    <img src="static/images/simulation.png" alt="Result Image" style="max-width: 100%; height: auto;">
   </div>
 </section>
 
@@ -162,43 +184,38 @@ We evaluate our method on a set of spatially challenging tasks in both simulatio
 <section class="section" style="padding-bottom: 1rem;">
   <div class="container is-max-desktop has-text-centered">
     <h2 class="title is-3">Real-world Experiments</h2>
-    <img src="static/images/task_setup_3.jpg" alt="Result Image" style="max-width: 100%; height: auto;">
+    <img src="static/images/real_world.png" alt="Result Image" style="max-width: 100%; height: auto;">
   </div>
 </section>
 <section class="section" style="padding-bottom: 1rem;">
   <div class="container is-max-desktop">
     <ol class="content has-text-justified">
       <li>
-        <strong>Centering a cylinder on a target.</strong><br>
+        <strong>Pick and Place Can.</strong><br>
         
-        The robot is required to align a cylindrical object precisely at the center of a marked target area on the table.
-        This task resembles target shooting: the target has concentric rings, and scoring is based on which ring the center of the cylinder falls into.
-        The closer to the center, the higher the score.
+        This task requires grasping a beverage can from varying initial positions and place it into
+        a white box on the table.
       </li>
 
       <li>
-        <strong>Peg-in-hole insertion.</strong><br>
-        This task requires the robot to insert a cylindrical peg into one of three tightly fitting holes on a board.
-        This necessitates accurate alignment in 3D space, as small tilting or offset could cause task failure.
+        <strong>Pour Foam from Cup.</strong><br>
+        This task requires lifting a foam-filled cup from varying initial positions and rotating it to
+        pour the foam into a white box.
       </li>
 
       <li>
-        <strong>Middle bottle grasping.</strong><br>
-        Three bottles are closely placed in a row, and the robot is instructed to pick the middle one.
-        This setup mimics a grocery store scenario, where items are densely arranged on shelves.
-        Success is defined as picking up the middle bottle without knocking over the adjacent ones.
+        <strong>Hand Delivery.</strong><br>
+        This task requires grasping a beverage
+        can from varying positions and gently placing it into a
+        human hand held at different locations.
       </li>
 
       <li>
-        <strong>Can pick-and-place.</strong><br>
-        In this task, the robot must pick up a standard can and place it in a designated spot on a shelf.
-        The location of the placement is varied across trials in both position and height, requiring the model to generalize spatial understanding to different configurations.
-      </li>
-
-      <li>
-        <strong>Transparent object pick-and-place.</strong><br>
-        The task setup is similar to the previous one, but involves transparent objects such as glass bottles.
-        This presents additional challenge, since transparent materials are often poorly captured by RGB sensors and are prone to glare, making them difficult to perceive and localize.
+        <strong>Can Stacking.</strong><br>
+        This task requires grasping a beverage
+        can and stacking it onto another with sufficient stability.
+        The two cans are identical and randomly placed on the
+        table.
       </li>
     </ol>
   </div>
@@ -206,65 +223,10 @@ We evaluate our method on a set of spatially challenging tasks in both simulatio
 <section class="section" style="padding-bottom: 1rem;">
   <div class="container is-max-desktop has-text-centered">
     <h2 class="title is-3">Qualitative results of our model in real-world tasks</h2>
-    <img src="static/images/task_results.png" alt="Result Image" style="max-width: 100%; height: auto;">
+    <img src="static/images/real_world_results.png" alt="Result Image" style="max-width: 100%; height: auto;">
   </div>
 </section>
 
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">Continuous Rollouts without Clipping (10x)</h2>
-
-    <!-- Group 1 -->
-    <div class="columns is-vcentered">
-      <div class="column has-text-centered">
-        <h4 class="subtitle is-5">Baseline(Pi0)</h4>
-        <video controls style="width: 100%; max-width: 100%;">
-          <source src="static/videos/pi0_task1.mp4" type="video/mp4">
-        </video>
-      </div>
-      <div class="column has-text-centered">
-        <h4 class="subtitle is-5">Ours</h4>
-        <video controls style="width: 100%; max-width: 100%;">
-          <source src="static/videos/vggt_task1.mp4" type="video/mp4">
-        </video>
-      </div>
-    </div>
-
-    <!-- Group 2 -->
-    <div class="columns is-vcentered">
-      <div class="column has-text-centered">
-        <h4 class="subtitle is-5">Baseline(Pi0)</h4>
-        <video controls style="width: 100%; max-width: 100%;">
-          <source src="static/videos/pi0_task2.mp4" type="video/mp4">
-        </video>
-      </div>
-      <div class="column has-text-centered">
-        <h4 class="subtitle is-5">Ours</h4>
-        <video controls style="width: 100%; max-width: 100%;">
-          <source src="static/videos/vggt_task2.mp4" type="video/mp4">
-        </video>
-      </div>
-    </div>
-
-    <!-- Group 3 -->
-    <div class="columns is-vcentered">
-      <div class="column has-text-centered">
-        <h4 class="subtitle is-5">Baseline(Pi0)</h4>
-        <video controls style="width: 100%; max-width: 100%;">
-          <source src="static/videos/pi0_task3.mp4" type="video/mp4">
-        </video>
-      </div>
-      <div class="column has-text-centered">
-        <h4 class="subtitle is-5">Ours</h4>
-        <video controls style="width: 100%; max-width: 100%;">
-          <source src="static/videos/vggt_task3.mp4" type="video/mp4">
-        </video>
-      </div>
-    </div>
-
-  </div>
-</section>
 
 
 
@@ -272,11 +234,14 @@ We evaluate our method on a set of spatially challenging tasks in both simulatio
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
       <h2 class="title">BibTeX</h2>
-      <pre><code>@article{lin2025evo,
-  title={Evo-0: Vision-Language-Action Model with Implicit Spatial Understanding},
-  author={Lin, Tao and Li, Gen and Zhong, Yilei and Zou, Yanwen and Zhao, Bo},
-  journal={arXiv preprint arXiv:2507.00416},
-  year={2025}
+      <pre><code>@misc{lin2025evo1lightweightvisionlanguageactionmodel,
+      title={Evo-1: Lightweight Vision-Language-Action Model with Preserved Semantic Alignment}, 
+      author={Tao Lin and Yilei Zhong and Yuxin Du and Jingjing Zhang and Jiting Liu and Yinxinyu Chen and Encheng Gu and Ziyan Liu and Hongyi Cai and Yanwen Zou and Lixing Zou and Zhaoye Zhou and Gen Li and Bo Zhao},
+      year={2025},
+      eprint={2511.04555},
+      archivePrefix={arXiv},
+      primaryClass={cs.RO},
+      url={https://arxiv.org/abs/2511.04555}, 
 }</code></pre>
     </div>
 </section>
